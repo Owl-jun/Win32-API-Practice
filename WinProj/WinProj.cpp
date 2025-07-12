@@ -1,8 +1,7 @@
-﻿// WinProj.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
-
+﻿#include "pch.h"
 #include "framework.h"
 #include "WinProj.h"
+#include "CCore.h"
 
 #define MAX_LOADSTRING 100
 
@@ -44,16 +43,20 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
+    // Core 초기화
+    if (FAILED(CCore::GetInst()->init(g_hWnd, POINT{1280, 768})))
+    {
+        MessageBox(nullptr, L"Core 객체 초기화 실패", L"ERROR", MB_OK);
+        return FALSE;
+    }
+    
+
     // GetMessage : Blocking
     // PeekMessasge : Non-Block
-    DWORD dwPrevCount = GetTickCount();
-    DWORD dwAccCount = 0;
-
     while (true)
     {
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            int iTime = GetTickCount();
             if (WM_QUIT == msg.message)
                 break;
 
@@ -62,21 +65,11 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                 TranslateMessage(&msg);
                 DispatchMessage(&msg);
             }
-            dwAccCount = (GetTickCount() - iTime);
             
         }
         else
         {
-            DWORD dwCurCount = GetTickCount();
-            if (dwCurCount - dwPrevCount > 1000)
-            {
-                float fRatio = (float)dwAccCount / 1000.f;
-                wchar_t szBuff[50] = {};
-                swprintf_s(szBuff, L"비율 : %f", fRatio);
-                SetWindowText(g_hWnd, szBuff);
-
-                dwPrevCount = dwCurCount;
-            }
+            CCore::GetInst()->progress();
         }
     }
 
@@ -174,7 +167,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);
         }
         break;
