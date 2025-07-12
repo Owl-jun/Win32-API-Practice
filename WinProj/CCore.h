@@ -5,7 +5,6 @@
 // 어디서든 쉽게 접근 가능
 class CCore
 {
-public:
 	SINGLE(CCore);
 private:
 	HWND	m_hWnd;			// 윈도우 핸들
@@ -15,11 +14,12 @@ private:
 public:
 	int init(HWND _hwnd , POINT _ptResol);
 	void progress();
+
 private:
 	void update();
 	void render();
-private:
-	CCore();
-	~CCore();
+
+public:
+	HWND GetMainHwnd() { return m_hWnd; }
 };
 
