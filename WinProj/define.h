@@ -13,3 +13,5 @@
 
 #define DT CTimeMgr::GetInst()->GetDT()
 #define fDT CTimeMgr::GetInst()->GetfDT()
+
+#define GETKEY(key) CKeyMgr::GetInst()->GetKeyState(key)

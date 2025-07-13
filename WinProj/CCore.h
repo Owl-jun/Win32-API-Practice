@@ -10,7 +10,8 @@ private:
 	HWND	m_hWnd;			// 윈도우 핸들
 	POINT	m_ptResolution;   // 해상도
 	HDC		m_hDC;
-
+	HBITMAP m_hBit;
+	HDC		m_memDC;
 public:
 	int init(HWND _hwnd , POINT _ptResol);
 	void progress();
