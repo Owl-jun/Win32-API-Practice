@@ -1,4 +1,5 @@
 #pragma once
+
 class CObject
 {
 private:
@@ -10,9 +11,12 @@ public:
 
 	Vec2 GetPos() { return m_vPos; }
 	Vec2 GetScale() { return m_vScale; }
+public:
+	void update();
+	void render(HDC _dc);
 
 public:
 	CObject();
-	~CObject();
+	virtual ~CObject();
 };
 

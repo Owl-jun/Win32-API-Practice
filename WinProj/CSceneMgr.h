@@ -1,0 +1,17 @@
+#pragma once
+class CScene;
+
+class CSceneMgr
+{
+	SINGLE(CSceneMgr);
+
+private:
+	shared_ptr<CScene>		m_arrScene[(UINT)SCENE_TYPE::END];
+	shared_ptr<CScene>		m_pCurScene;
+
+public:
+	void init();
+	void update();
+	void render(HDC _dc);
+};
+
