@@ -33,6 +33,7 @@ int g_arrVK[(int)KEY::LAST] =
 	VK_MENU,
 	VK_CONTROL,
 	VK_LSHIFT,
+	VK_SPACE,
 	VK_RETURN,
 	VK_ESCAPE
 };
