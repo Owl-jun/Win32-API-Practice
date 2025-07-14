@@ -20,6 +20,8 @@
 #define KEY_AWAY(key)	GETKEY(key) == KEY_STATE::AWAY
 #define KEY_NONE(key)	GETKEY(key) == KEY_STATE::NONE
 
+#define PI 3.141592f
+
 enum class GROUP_TYPE
 {
 	DEFAULT,
