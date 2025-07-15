@@ -142,6 +142,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="CBackGround.h" />
     <ClInclude Include="CCore.h" />
     <ClInclude Include="CKeyMgr.h" />
     <ClInclude Include="CMissile.h" />
@@ -149,6 +150,7 @@
     <ClInclude Include="CObject.h" />
     <ClInclude Include="CPathMgr.h" />
     <ClInclude Include="CRes.h" />
+    <ClInclude Include="CResMgr.h" />
     <ClInclude Include="CScene.h" />
     <ClInclude Include="CScene_Start.h" />
     <ClInclude Include="CSound.h" />
@@ -165,6 +167,7 @@
     <ClInclude Include="WinProj.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CBackGround.cpp" />
     <ClCompile Include="CCore.cpp" />
     <ClCompile Include="CKeyMgr.cpp" />
     <ClCompile Include="CMissile.cpp" />
@@ -172,6 +175,7 @@
     <ClCompile Include="CObject.cpp" />
     <ClCompile Include="CPathMgr.cpp" />
     <ClCompile Include="CRes.cpp" />
+    <ClCompile Include="CResMgr.cpp" />
     <ClCompile Include="CScene.cpp" />
     <ClCompile Include="CScene_Start.cpp" />
     <ClCompile Include="CSound.cpp" />

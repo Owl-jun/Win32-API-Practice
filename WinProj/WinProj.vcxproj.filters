@@ -65,6 +65,9 @@
     <Filter Include="Engine\03. Manager\ResrcMgr">
       <UniqueIdentifier>{bb11a7ea-35ba-48e6-975f-855d3646c4ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\04. Object\BackGround">
+      <UniqueIdentifier>{2e7584d0-7342-4acb-81a7-17f00633848a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -128,6 +131,10 @@
     <ClInclude Include="CPathMgr.h">
       <Filter>Engine\03. Manager\PathMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CResMgr.h">
+      <Filter>Engine\03. Manager\ResrcMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="CBackGround.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinProj.rc">
@@ -189,5 +196,9 @@
     <ClCompile Include="CPathMgr.cpp">
       <Filter>Engine\03. Manager\PathMgr</Filter>
     </ClCompile>
+    <ClCompile Include="CResMgr.cpp">
+      <Filter>Engine\03. Manager\ResrcMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CBackGround.cpp" />
   </ItemGroup>
 </Project>

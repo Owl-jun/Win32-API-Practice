@@ -1,5 +1,7 @@
 #pragma once
 
+class CTexture;
+
 struct Vec2
 {
 	float x;
@@ -51,3 +53,17 @@ public:
 		, y((float)_pt.y)
 	{ }
 };
+
+struct TextureDeleter {
+	void operator()(CTexture* p) const {
+		delete p;
+	}
+};
+
+inline int randint(int min, int max)
+{
+	static random_device rd;
+	static mt19937 gen(rd());
+	uniform_int_distribution<> dist(min, max);
+	return dist(gen);
+}

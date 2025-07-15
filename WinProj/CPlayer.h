@@ -9,8 +9,9 @@ class CPlayer : public CObject
 private:
 	float					m_fAttackCoolDown;
 	float					m_fSkillCoolDown;
+	float					m_fSpeed;
 private:
-	std::unique_ptr<CTexture>	m_pTex;
+	shared_ptr<CTexture>	m_pTex;
 
 public:
 	CPlayer();

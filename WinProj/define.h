@@ -9,7 +9,7 @@
 					 private:\
 						type();\
 						~type();
-
+#define GETTEX(key, path) CResMgr::GetInst()->LoadTexture(key, path)
 #define PATH CPathMgr::GetInst()->GetContentPath()
 
 #define DT CTimeMgr::GetInst()->GetDT()

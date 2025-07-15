@@ -5,17 +5,16 @@
 #include "CTimeMgr.h"
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
+#include "CResMgr.h"
 
 CPlayer::CPlayer()
 	: m_fAttackCoolDown(0.1f)
 	, m_fSkillCoolDown(3.f)
+	, m_fSpeed(400.f)
 	, m_pTex(nullptr)
 {
 	// Texture ·Îµù
-	m_pTex = make_unique<CTexture>();
-	wstring strFilepath = PATH;
-	strFilepath += L"texture\\Player.bmp";
-	m_pTex->Load(strFilepath);
+	m_pTex = GETTEX(L"PlayerTex", L"texture\\Player.bmp");
 }
 
 CPlayer::~CPlayer()
@@ -30,19 +29,19 @@ void CPlayer::update()
 	auto m_vPos = GetPos();
 	if (KEY_HOLD(KEY::W))
 	{
-		m_vPos.y -= 200.f * fDT;
+		m_vPos.y -= m_fSpeed * fDT;
 	}
 	if (KEY_HOLD(KEY::S))
 	{
-		m_vPos.y += 200.f * fDT;
+		m_vPos.y += m_fSpeed * fDT;
 	}
 	if (KEY_HOLD(KEY::A))
 	{
-		m_vPos.x -= 200.f * fDT;
+		m_vPos.x -= m_fSpeed * fDT;
 	}
 	if (KEY_HOLD(KEY::D))
 	{
-		m_vPos.x += 200.f * fDT;
+		m_vPos.x += m_fSpeed * fDT;
 	}
  	if (KEY_HOLD(KEY::SPACE))
 	{
