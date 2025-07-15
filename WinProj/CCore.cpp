@@ -4,6 +4,7 @@
 #include "CTimeMgr.h"
 #include "CKeyMgr.h"
 #include "CSceneMgr.h"
+#include "CPathMgr.h"
 
 
 CCore::CCore()
@@ -42,10 +43,10 @@ int CCore::init(HWND _hwnd, POINT _ptResol)
 	DeleteObject(hOldBit);
 
 	// Manager 초기화
+	CPathMgr::GetInst()->init();
 	CTimeMgr::GetInst()->init();
 	CKeyMgr::GetInst()->init();
 	CSceneMgr::GetInst()->init();
-
 
 	return S_OK;
 }
@@ -67,5 +68,7 @@ void CCore::progress()
 	// memDC -> hDC 카피
 	BitBlt(m_hDC, 0, 0, m_ptResolution.x, m_ptResolution.y
 		, m_memDC, 0, 0, SRCCOPY);
+
+	// CTimeMgr::GetInst()->render();
 }
 

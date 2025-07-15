@@ -10,6 +10,7 @@
 						type();\
 						~type();
 
+#define PATH CPathMgr::GetInst()->GetContentPath()
 
 #define DT CTimeMgr::GetInst()->GetDT()
 #define fDT CTimeMgr::GetInst()->GetfDT()

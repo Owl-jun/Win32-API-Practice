@@ -4,11 +4,18 @@
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
 #include "CSceneMgr.h"
+#include "CPathMgr.h"
 
 CPlayer::CPlayer()
 	: m_fAttackCoolDown(0.1f)
 	, m_fSkillCoolDown(3.f)
+	, m_pTex(nullptr)
 {
+	// Texture ·Îµù
+	m_pTex = make_unique<CTexture>();
+	wstring strFilepath = PATH;
+	strFilepath += L"texture\\Player.bmp";
+	m_pTex->Load(strFilepath);
 }
 
 CPlayer::~CPlayer()
@@ -53,6 +60,26 @@ void CPlayer::update()
 
 	SetPos(m_vPos);
 
+}
+
+void CPlayer::render(HDC _dc)
+{
+	int iWidth = (int)m_pTex->Width();
+	int iHeight = (int)m_pTex->Height();
+	Vec2 vPos = GetPos();
+	
+	/*BitBlt(_dc, (int)(vPos.x - (float)(iWidth / 2))
+			  , (int)(vPos.y - (float)(iHeight / 2))
+			  ,	iWidth , iHeight, m_pTex->GetDC(), 0, 0, SRCCOPY);*/
+	
+	TransparentBlt(_dc
+		, (int)(vPos.x - (float)(iWidth / 2))
+		, (int)(vPos.y - (float)(iHeight / 2))
+		, iWidth, iHeight
+		, m_pTex->GetDC()
+		, 0, 0, iWidth, iHeight
+		, RGB(255, 0, 255)
+	);
 }
 
 void CPlayer::CreateMissile(MISSILE_MODE _mode)
