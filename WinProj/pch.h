@@ -2,6 +2,7 @@
 
 
 #include <Windows.h>
+#include <assert.h>
 #include <cwchar>
 #include <vector>
 #include <memory>

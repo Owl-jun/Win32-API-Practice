@@ -11,6 +11,8 @@ enum class MISSILE_MODE
 class CMissile : public CObject
 {
 private:
+	Vec2			m_vDir;
+
 	MISSILE_MODE	m_cMode;
 	float			m_fTheta; // πÊ«‚
 	float			m_fET;
@@ -19,7 +21,10 @@ private:
 	float			m_fCenterX;
 	float			m_fSpeed;
 public:
-	// void SetDir(bool _bUp)	{ m_fDir = _bUp ? -1.f : 1.f; }
+	void SetDir(Vec2 _vDir)	{ 
+		m_vDir = _vDir; 
+		m_vDir.Normalize();
+	}
 	void SetMode(MISSILE_MODE _mode) { m_cMode = _mode; }
 	void SetCenterX(float _x) { m_fCenterX = _x; }
 private:

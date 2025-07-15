@@ -63,7 +63,7 @@ void CPlayer::CreateMissile(MISSILE_MODE _mode)
 	shared_ptr<CMissile> pMissile = make_shared<CMissile>();
 	pMissile->SetPos(vMissilePos);
 	pMissile->SetScale(Vec2(25.f, 25.f));
-	// pMissile->SetDir(true);
+	pMissile->SetDir(Vec2(0.f,2.f));
 	pMissile->SetMode(_mode);
 	pMissile->SetCenterX(vMissilePos.x);
 
