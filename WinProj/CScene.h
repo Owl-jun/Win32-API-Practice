@@ -23,6 +23,7 @@ public:
 	virtual void Enter() = 0;
 	virtual void Exit() = 0;
 	void update();
+	void finalupdate();
 	void render(HDC _dc);
 
 public:

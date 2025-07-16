@@ -26,6 +26,14 @@ public:
 	}
 
 public:
+	Vec2 operator + (const Vec2& _vOther) { return Vec2(x + _vOther.x, y + _vOther.y); }
+	Vec2 operator - (const Vec2& _vOther) { return Vec2(x - _vOther.x, y - _vOther.y); }
+	Vec2 operator * (const Vec2& _vOther) { return Vec2(x * _vOther.x, y * _vOther.y); }
+	Vec2 operator / (const Vec2& _vOther) { 
+		assert(_vOther.x == 0.f || _vOther.y == 0.f);
+		return Vec2(x + _vOther.x, y + _vOther.y); 
+	}
+
 	Vec2& operator = (POINT _pt)
 	{
 		x = (float)_pt.x;

@@ -16,6 +16,7 @@ CMissile::CMissile()
 	, m_fCenterX(0.f)
 {
 	m_vDir.Normalize();
+	CreateCollider();
 }
 
 CMissile::~CMissile()

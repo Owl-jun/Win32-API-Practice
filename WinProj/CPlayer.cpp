@@ -15,6 +15,7 @@ CPlayer::CPlayer()
 {
 	// Texture ·Îµù
 	m_pTex = GETTEX(L"PlayerTex", L"texture\\Player.bmp");
+	CreateCollider();
 }
 
 CPlayer::~CPlayer()

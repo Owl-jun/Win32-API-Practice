@@ -68,6 +68,9 @@
     <Filter Include="Engine\04. Object\BackGround">
       <UniqueIdentifier>{2e7584d0-7342-4acb-81a7-17f00633848a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\07. Component">
+      <UniqueIdentifier>{edcfe108-eb48-47fc-97e6-417c9f65613d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -134,7 +137,12 @@
     <ClInclude Include="CResMgr.h">
       <Filter>Engine\03. Manager\ResrcMgr</Filter>
     </ClInclude>
-    <ClInclude Include="CBackGround.h" />
+    <ClInclude Include="CBackGround.h">
+      <Filter>Engine\04. Object\BackGround</Filter>
+    </ClInclude>
+    <ClInclude Include="CCollider.h">
+      <Filter>Engine\07. Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinProj.rc">
@@ -199,6 +207,11 @@
     <ClCompile Include="CResMgr.cpp">
       <Filter>Engine\03. Manager\ResrcMgr</Filter>
     </ClCompile>
-    <ClCompile Include="CBackGround.cpp" />
+    <ClCompile Include="CBackGround.cpp">
+      <Filter>Engine\04. Object\BackGround</Filter>
+    </ClCompile>
+    <ClCompile Include="CCollider.cpp">
+      <Filter>Engine\07. Component</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

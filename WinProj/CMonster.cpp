@@ -11,6 +11,7 @@ CMonster::CMonster()
 	, m_pTex(nullptr)
 {
 	m_pTex = GETTEX(L"MonsterTex", L"texture\\Monster.bmp");
+	CreateCollider();
 }
 
 CMonster::~CMonster()
