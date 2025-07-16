@@ -6,6 +6,7 @@
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
 #include "CResMgr.h"
+#include "CCollisionMgr.h"
 
 CCore::CCore()
 	: m_hWnd(0)
@@ -22,6 +23,11 @@ CCore::~CCore()
 
 	DeleteDC(m_memDC);
 	DeleteObject(m_hBit);
+
+	for (UINT i = 0; i < (UINT)PEN_TYPE::END; ++i)
+	{
+		DeleteObject(m_arrPen[i]);
+	}
 }
 
 int CCore::init(HWND _hwnd, POINT _ptResol)
@@ -42,6 +48,9 @@ int CCore::init(HWND _hwnd, POINT _ptResol)
 	HBITMAP hOldBit = (HBITMAP)SelectObject(m_memDC, m_hBit);
 	DeleteObject(hOldBit);
 
+	// 재사용 펜 생성
+	CreatBrushPen();
+
 	// Manager 초기화
 	CPathMgr::GetInst()->init();
 	CTimeMgr::GetInst()->init();
@@ -56,6 +65,7 @@ void CCore::progress()
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
 	CSceneMgr::GetInst()->update();
+	CCollisionMgr::GetInst()->update();
 
 	// ====================
 	// Rendering
@@ -70,5 +80,16 @@ void CCore::progress()
 		, m_memDC, 0, 0, SRCCOPY);
 
 	CTimeMgr::GetInst()->render();
+}
+
+void CCore::CreatBrushPen()
+{
+	// hollow brush
+	m_arrBrush[(UINT)BRUSH_TYPE::HOLLOW] = (HBRUSH)GetStockObject(HOLLOW_BRUSH);
+
+	// red pen
+	m_arrPen[(UINT)PEN_TYPE::RED] = CreatePen(PS_SOLID, 1, RGB(255, 0, 0));
+	m_arrPen[(UINT)PEN_TYPE::GREEN] = CreatePen(PS_SOLID, 1, RGB(0, 255, 0));
+	m_arrPen[(UINT)PEN_TYPE::BLUE] = CreatePen(PS_SOLID, 1, RGB(0, 0, 255));
 }
 

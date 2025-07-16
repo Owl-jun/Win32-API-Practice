@@ -1,6 +1,22 @@
 #include "pch.h"
 #include "CCollider.h"
 #include "CObject.h"
+#include "CCore.h"
+#include "SelectGDI.h"
+
+UINT CCollider::g_iNextID = 0;
+
+CCollider::CCollider()
+	: m_pOwner(nullptr)
+	, m_vOffsetPos{0.f,0.f}
+	, m_vFinalPos{}
+	, m_iID(g_iNextID++)
+{
+}
+
+CCollider::~CCollider()
+{
+}
 
 void CCollider::finalupdate()
 {
@@ -8,13 +24,15 @@ void CCollider::finalupdate()
 	m_vFinalPos = vObjectPos + m_vOffsetPos;
 }
 
-CCollider::CCollider()
-	: m_pOwner(nullptr)
-	, m_vOffsetPos({0.f,0.f})
-	, m_vFinalPos{}
+void CCollider::render(HDC _dc)
 {
+	SelectGDI t_p = SelectGDI(_dc, PEN_TYPE::GREEN);
+	SelectGDI t_b = SelectGDI(_dc, BRUSH_TYPE::HOLLOW);
+
+	Rectangle(_dc
+		, m_vFinalPos.x - m_vScale.x / 2.f
+		, m_vFinalPos.y - m_vScale.y / 2.f
+		, m_vFinalPos.x + m_vScale.x / 2.f
+		, m_vFinalPos.y + m_vScale.y / 2.f);
 }
 
-CCollider::~CCollider()
-{
-}

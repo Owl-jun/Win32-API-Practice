@@ -2,7 +2,7 @@
 #include "CMissile.h"
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
-
+#include "CCollider.h"
 
 
 CMissile::CMissile()
@@ -17,6 +17,7 @@ CMissile::CMissile()
 {
 	m_vDir.Normalize();
 	CreateCollider();
+	GetCollider()->SetScale(Vec2{ 16.f,16.f });
 }
 
 CMissile::~CMissile()
@@ -64,4 +65,5 @@ void CMissile::render(HDC _dc)
 	default:
 		break;
 	}
+	component_render(_dc);
 }

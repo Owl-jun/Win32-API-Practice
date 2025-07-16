@@ -2,6 +2,7 @@
 #include "CMonster.h"
 #include "CTimeMgr.h"
 #include "CResMgr.h"
+#include "CCollider.h"
 
 CMonster::CMonster()
 	: m_vCenterPos(Vec2(0.f,0.f))
@@ -12,6 +13,8 @@ CMonster::CMonster()
 {
 	m_pTex = GETTEX(L"MonsterTex", L"texture\\Monster.bmp");
 	CreateCollider();
+	GetCollider()->SetScale(Vec2{ 48.f,24.f });
+	GetCollider()->SetOffsetPos(Vec2{ 0.f, 10.f });
 }
 
 CMonster::~CMonster()
@@ -47,6 +50,7 @@ void CMonster::render(HDC _dc)
 	int iHeight = (int)m_pTex->Height();
 	Vec2 vPos = GetPos();
 
+	// 255 , 0 , 255 (마젠타) 색 크로마키 화 해서 Blt
 	TransparentBlt(_dc
 		, (int)(vPos.x - (float)(iWidth / 2))
 		, (int)(vPos.y - (float)(iHeight / 2))
@@ -55,5 +59,7 @@ void CMonster::render(HDC _dc)
 		, 0, 0, iWidth, iHeight
 		, RGB(255, 0, 255)
 	);
+
+	component_render(_dc);
 }
 

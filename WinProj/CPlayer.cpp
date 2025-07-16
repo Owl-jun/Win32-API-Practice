@@ -6,6 +6,7 @@
 #include "CSceneMgr.h"
 #include "CPathMgr.h"
 #include "CResMgr.h"
+#include "CCollider.h"
 
 CPlayer::CPlayer()
 	: m_fAttackCoolDown(0.1f)
@@ -15,7 +16,10 @@ CPlayer::CPlayer()
 {
 	// Texture 로딩
 	m_pTex = GETTEX(L"PlayerTex", L"texture\\Player.bmp");
+
 	CreateCollider();
+	GetCollider()->SetOffsetPos(Vec2{ 0.f, 5.f });
+	GetCollider()->SetScale(Vec2{ 20.f, 60.f });
 }
 
 CPlayer::~CPlayer()
@@ -80,6 +84,9 @@ void CPlayer::render(HDC _dc)
 		, 0, 0, iWidth, iHeight
 		, RGB(255, 0, 255)
 	);
+
+	// 컴포넌트 충돌체 Render
+	component_render(_dc);
 }
 
 void CPlayer::CreateMissile(MISSILE_MODE _mode)

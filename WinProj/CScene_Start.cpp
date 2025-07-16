@@ -7,6 +7,8 @@
 #include "CPathMgr.h"
 #include "CTexture.h"
 #include "CBackGround.h"
+#include "CCollisionMgr.h"
+
 void CScene_Start::Enter()
 {
 	auto bg = make_shared<CBackGround>();
@@ -18,7 +20,7 @@ void CScene_Start::Enter()
 	
 	pObj->SetPos(Vec2(640.f, 384.f));
 	pObj->SetScale(Vec2(100.f,100.f));
-	AddObject(pObj, GROUP_TYPE::DEFAULT);
+	AddObject(pObj, GROUP_TYPE::PLAYER);
 
 	// Monster Object 추가
 	int iMonCount = 16;
@@ -35,10 +37,16 @@ void CScene_Start::Enter()
 		mObj->SetScale(Vec2(fObjScale, fObjScale));
 		AddObject(mObj, GROUP_TYPE::MONSTER);
 	}
+
+	// 충돌 지정
+	// Player 그룹과 Monster 그룹 관의 충돌 체크
+	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
+
 }
 
 void CScene_Start::Exit()
 {
+	CCollisionMgr::GetInst()->Reset();
 }
 
 CScene_Start::CScene_Start(wstring _name)
