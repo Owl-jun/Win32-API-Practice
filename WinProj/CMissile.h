@@ -20,6 +20,11 @@ private:
 	float			m_fAmp;
 	float			m_fCenterX;
 	float			m_fSpeed;
+
+private:
+	shared_ptr<CTexture>	m_pNormalTex;
+	shared_ptr<CTexture>	m_pSuperTex;
+
 public:
 	void SetDir(Vec2 _vDir)	{ 
 		m_vDir = _vDir; 
@@ -27,9 +32,11 @@ public:
 	}
 	void SetMode(MISSILE_MODE _mode) { m_cMode = _mode; }
 	void SetCenterX(float _x) { m_fCenterX = _x; }
+
 private:
 	void update() override;
 	void render(HDC _dc) override;
+
 public:
 	CMissile();
 	~CMissile();

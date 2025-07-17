@@ -15,6 +15,8 @@ public:
 	void SetMoveDistance(float _f) { m_fMaxDistance = _f; }
 	void SetCenterPos(Vec2 _vPos) { m_vCenterPos = _vPos; }
 
+	void OnCollisionEnter(CCollider* _pOther) override;
+
 public:
 	void update() override;
 	void render(HDC _dc) override;

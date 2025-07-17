@@ -23,7 +23,7 @@ void CScene_Start::Enter()
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
 	// Monster Object Ãß°¡
-	int iMonCount = 16;
+	int iMonCount = 8;
 	float fMoveDist = 25.f;
 	float fObjScale = 50.f;
 	Vec2 vResolution = CCore::GetInst()->GetResolution();

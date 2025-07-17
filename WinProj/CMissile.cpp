@@ -2,6 +2,7 @@
 #include "CMissile.h"
 #include "CKeyMgr.h"
 #include "CTimeMgr.h"
+#include "CResMgr.h"
 #include "CCollider.h"
 
 
@@ -15,9 +16,11 @@ CMissile::CMissile()
 	, m_fSpeed(600.f)
 	, m_fCenterX(0.f)
 {
+	m_pNormalTex = GETTEX(L"NormalMissileTex", L"texture\\Missile_Normal.bmp");
+	m_pSuperTex = GETTEX(L"SuperMissileTex", L"texture\\Missile_Super.bmp");
 	m_vDir.Normalize();
 	CreateCollider();
-	GetCollider()->SetScale(Vec2{ 16.f,16.f });
+	GetCollider()->SetScale(Vec2{ 20.f,20.f });
 }
 
 CMissile::~CMissile()
@@ -49,18 +52,33 @@ void CMissile::update()
 
 void CMissile::render(HDC _dc)
 {
+	int iNormalWidth = (int)m_pNormalTex->Width();
+	int iNormalHeight = (int)m_pNormalTex->Height();	
+	int iSuperWidth = (int)m_pSuperTex->Width();
+	int iSuperHeight = (int)m_pSuperTex->Height();
 	auto vPos = GetPos();
-	auto vScale = GetScale();
 
 	switch (m_cMode)
 	{
 	case MISSILE_MODE::NORMAL:
-		Ellipse(_dc, vPos.x - vScale.x / 2.f, vPos.y - vScale.y / 2.f
-			, vPos.x + vScale.x / 2.f, vPos.y + vScale.y / 2.f);
+		TransparentBlt(_dc
+			, (int)(vPos.x - (float)(iNormalWidth / 2))
+			, (int)(vPos.y - (float)(iNormalHeight / 2))
+			, iNormalWidth, iNormalHeight
+			, m_pNormalTex->GetDC()
+			, 0, 0, iNormalWidth, iNormalHeight
+			, RGB(255, 0, 255)
+		);
 		break;
 	case MISSILE_MODE::SUPER:
-		Rectangle(_dc, vPos.x - vScale.x / 2.f, vPos.y - vScale.y / 2.f
-			, vPos.x + vScale.x / 2.f, vPos.y + vScale.y / 2.f);
+		TransparentBlt(_dc
+			, (int)(vPos.x - (float)(iSuperWidth / 2))
+			, (int)(vPos.y - (float)(iSuperHeight / 2))
+			, iSuperWidth, iSuperHeight
+			, m_pSuperTex->GetDC()
+			, 0, 0, iSuperWidth, iSuperHeight
+			, RGB(255, 0, 255)
+		);
 		break;
 	default:
 		break;

@@ -77,6 +77,9 @@
     <Filter Include="Engine\03. Manager\CollisionMgr">
       <UniqueIdentifier>{722af8d1-0756-4018-ba42-7db6840754ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\EventMgr">
+      <UniqueIdentifier>{72ec8e2d-3fab-4059-9882-c0c0b5afcc04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -155,6 +158,9 @@
     <ClInclude Include="CCollisionMgr.h">
       <Filter>Engine\03. Manager\CollisionMgr</Filter>
     </ClInclude>
+    <ClInclude Include="CEventMgr.h">
+      <Filter>Engine\03. Manager\EventMgr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinProj.rc">
@@ -230,6 +236,9 @@
     </ClCompile>
     <ClCompile Include="CCollisionMgr.cpp">
       <Filter>Engine\03. Manager\CollisionMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="CEventMgr.cpp">
+      <Filter>Engine\03. Manager\EventMgr</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

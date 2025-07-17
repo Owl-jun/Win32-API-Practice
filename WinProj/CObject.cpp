@@ -26,6 +26,18 @@ void CObject::render(HDC _dc)
 	component_render(_dc);
 }
 
+void CObject::OnCollision(CCollider* _pOther)
+{
+}
+
+void CObject::OnCollisionEnter(CCollider* _pOther)
+{
+}
+
+void CObject::OnCollisionExit(CCollider* _pOther)
+{
+}
+
 void CObject::component_render(HDC _dc)
 {
 	if (nullptr != m_pCollider)
