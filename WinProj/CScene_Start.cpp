@@ -11,12 +11,12 @@
 
 void CScene_Start::Enter()
 {
-	auto bg = make_shared<CBackGround>();
+	auto bg = new CBackGround();
 	bg->SetPos(Vec2(640.f, 384.f));
 	AddObject(bg, GROUP_TYPE::DEFAULT);
 
 	// Object Ãß°¡
-	auto pObj = make_shared<CPlayer>();
+	auto pObj = new CPlayer();
 	
 	pObj->SetPos(Vec2(640.f, 384.f));
 	pObj->SetScale(Vec2(100.f,100.f));
@@ -30,7 +30,7 @@ void CScene_Start::Enter()
 	float fTerm = (vResolution.x - ((fMoveDist + fObjScale/2) * 2)) / (float)(iMonCount - 1);
 	for (int i = 0; i < iMonCount; ++i)
 	{
-		auto mObj = std::make_shared<CMonster>();
+		auto mObj = new CMonster();
 		mObj->SetPos(Vec2((fMoveDist + fObjScale / 2) + fTerm * i, 50.f * randint(1,3)));
 		mObj->SetCenterPos(mObj->GetPos());
 		mObj->SetMoveDistance(fMoveDist);

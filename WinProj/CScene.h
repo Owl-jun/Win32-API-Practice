@@ -5,20 +5,20 @@ class CObject;
 class CScene
 {
 private:
-	vector<shared_ptr<CObject>> m_arrObj[(UINT)GROUP_TYPE::END];	// 오브젝트를 저장 및 관리할 벡터를 그룹개수만큼 선언
+	vector<CObject*> m_arrObj[(UINT)GROUP_TYPE::END];	// 오브젝트를 저장 및 관리할 벡터를 그룹개수만큼 선언
 	wstring						m_strName;
 	
 
 public:
 	void SetName(const wstring& _strName) { m_strName = _strName; }
 	const wstring& GetName() { return m_strName; }
-	const vector<shared_ptr<CObject>>& GetGroupObject(GROUP_TYPE _eType)
+	const vector<CObject*>& GetGroupObject(GROUP_TYPE _eType)
 	{
 		return m_arrObj[(UINT)_eType];
 	}
 
 public:
-	void AddObject(shared_ptr<CObject> _pObj, GROUP_TYPE _eType)
+	void AddObject(CObject* _pObj, GROUP_TYPE _eType)
 	{
 		m_arrObj[(UINT)_eType].push_back(_pObj);
 	}

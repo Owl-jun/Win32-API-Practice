@@ -8,6 +8,7 @@
 #include "CResMgr.h"
 #include "CCollider.h"
 
+
 CPlayer::CPlayer()
 	: m_fAttackCoolDown(0.1f)
 	, m_fSkillCoolDown(3.f)
@@ -94,15 +95,14 @@ void CPlayer::CreateMissile(MISSILE_MODE _mode)
 	Vec2 vMissilePos = GetPos();
 	vMissilePos.y -= GetScale().y / 2.f;
 
-	shared_ptr<CMissile> pMissile = make_shared<CMissile>();
+	CMissile* pMissile = new CMissile;
 	pMissile->SetPos(vMissilePos);
 	pMissile->SetScale(Vec2(25.f, 25.f));
 	pMissile->SetDir(Vec2(0.f,2.f));
 	pMissile->SetMode(_mode);
 	pMissile->SetCenterX(vMissilePos.x);
 
-	auto curScene = CSceneMgr::GetInst()->GetCurScene(); 
-	curScene->AddObject(pMissile,GROUP_TYPE::MISSILE);
+	CreateObject(pMissile, GROUP_TYPE::PROJ_PLAYER);
 }
 
 

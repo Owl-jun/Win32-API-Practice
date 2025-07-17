@@ -1,5 +1,6 @@
 #pragma once
 
+#include <iostream>
 #include <Windows.h>
 #include <assert.h>
 #include <cwchar>
@@ -30,5 +31,6 @@ using std::make_pair;
 
 #include "struct.h"
 #include "define.h"
+#include "func.h"
 
 #pragma comment(lib, "Msimg32.lib")

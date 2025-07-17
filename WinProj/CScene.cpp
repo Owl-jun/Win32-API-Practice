@@ -44,6 +44,10 @@ CScene::~CScene()
 {
 	for (UINT i = 0; i < (UINT)GROUP_TYPE::END; ++i)
 	{
-		m_arrObj[i].clear();
+		for (UINT j = 0; j < m_arrObj[i].size(); ++j)
+		{
+			if (nullptr != m_arrObj[i][j])
+				delete m_arrObj[i][j];
+		}
 	}
 }

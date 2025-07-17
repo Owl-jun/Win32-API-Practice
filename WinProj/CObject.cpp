@@ -50,6 +50,7 @@ CObject::CObject()
 	: m_vPos{}
 	, m_vScale{}
 	, m_pCollider(nullptr)
+	, m_bAlive(true)
 {
 }
 
@@ -57,4 +58,5 @@ CObject::~CObject()
 {
 	if (nullptr != m_pCollider)
 		delete m_pCollider;
+
 }

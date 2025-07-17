@@ -27,8 +27,8 @@ void CSceneMgr::init()
 
 void CSceneMgr::update()
 {
-	m_pCurScene->update();
-	m_pCurScene->finalupdate();
+	m_pCurScene->update();		// 한 프레임 내 사건들 발생
+	m_pCurScene->finalupdate();	// 한 프레임 일어난 사건들 적용 (프레임 동기화)
 }
 
 void CSceneMgr::render(HDC _dc)
