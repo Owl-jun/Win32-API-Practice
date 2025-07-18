@@ -29,10 +29,12 @@ void CTimeMgr::update()
 {
 	QueryPerformanceCounter(&m_llCurCount);
 	
-	m_dDT = ((double)m_llCurCount.QuadPart - (double)m_llPrevCount.QuadPart) / (double)m_llFrequency.QuadPart;
+	m_dDT = ((double)m_llCurCount.QuadPart - (double)m_llPrevCount.QuadPart) 
+			/ (double)m_llFrequency.QuadPart;
 	
 	m_llPrevCount = m_llCurCount;
 
+	// 디버그 도중 비정상적인 DT 상승 방지 (60FPS 고정)
 #ifdef _DEBUG
 	if (m_dDT > (1. / 60.))
 		m_dDT = (1. / 60.);
