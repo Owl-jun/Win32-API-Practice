@@ -19,6 +19,8 @@ public:
 public:
 	void update() override;
 	void render(HDC _dc) override;
+	CLONE(CPlayer);
+
 private:
 	void CreateMissile(MISSILE_MODE _mode);
 

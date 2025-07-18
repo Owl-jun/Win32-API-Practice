@@ -16,5 +16,8 @@ public:
 
 public:
 	shared_ptr<CScene> GetCurScene() { return m_pCurScene; }
+private:
+	void ChangeScene(SCENE_TYPE _eNext);
+	friend class CEventMgr;
 };
 

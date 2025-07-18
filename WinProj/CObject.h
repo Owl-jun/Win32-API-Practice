@@ -1,15 +1,18 @@
 #pragma once
 
 class CCollider;
+class CAnimator;
 
 class CObject
 {
 private:
 	wstring		m_wName;
+
 	Vec2		m_vPos;
 	Vec2		m_vScale;
 	
 	CCollider*	m_pCollider;
+	CAnimator*	m_pAnimator;
 
 	bool		m_bAlive;
 
@@ -22,6 +25,8 @@ public:
 
 	void SetName(const wstring& _wName) { m_wName = _wName; }
 	const wstring& GetName() { return m_wName; }
+
+	CCollider* GetCollider() { return m_pCollider; }
 
 	bool IsDead() { return !m_bAlive; }
 
@@ -40,9 +45,11 @@ public:
 	virtual void render(HDC _dc);
 
 	void component_render(HDC _dc);
-	CCollider* GetCollider() { return m_pCollider; }
+
+	virtual CObject* Clone() = 0;
 public:
 	CObject();
+	CObject(const CObject& _origin);
 	virtual ~CObject();
 
 	friend class CEventMgr;

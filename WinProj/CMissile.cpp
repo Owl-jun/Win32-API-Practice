@@ -20,11 +20,21 @@ CMissile::CMissile()
 	m_pSuperTex = GETTEX(L"SuperMissileTex", L"texture\\Missile_Super.bmp");
 	m_vDir.Normalize();
 	CreateCollider();
-	GetCollider()->SetScale(Vec2{ 20.f,20.f });
+	GetCollider()->SetScale(Vec2{ 15.f,15.f });
 }
 
 CMissile::~CMissile()
 {
+}
+
+void CMissile::OnCollisionEnter(CCollider* _pOther)
+{
+	CObject* pOtherObj = _pOther->GetObj();
+
+	if (pOtherObj->GetName() == L"Monster")
+	{
+		DeleteObject(this);
+	}
 }
 
 void CMissile::update()

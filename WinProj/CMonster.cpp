@@ -10,6 +10,7 @@ CMonster::CMonster()
 	, m_fMaxDistance(50.f)
 	, m_iDir(1)
 	, m_pTex(nullptr)
+	, m_iHP(5)
 {
 	m_pTex = GETTEX(L"MonsterTex", L"texture\\Monster.bmp");
 	CreateCollider();
@@ -23,6 +24,13 @@ CMonster::~CMonster()
 
 void CMonster::OnCollisionEnter(CCollider* _pOther)
 {
+	CObject* pOtherObj = _pOther->GetObj();
+
+	if (pOtherObj->GetName() == L"Missile_Player")
+	{
+		if (0 >= --m_iHP)
+			DeleteObject(this);
+	}
 }
 
 void CMonster::update()

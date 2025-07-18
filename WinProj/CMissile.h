@@ -34,11 +34,15 @@ public:
 	void SetCenterX(float _x) { m_fCenterX = _x; }
 
 private:
+	void OnCollisionEnter(CCollider* _pOther) override;
+
+private:
 	void update() override;
 	void render(HDC _dc) override;
 
 public:
 	CMissile();
 	~CMissile();
+	CLONE(CMissile);
 };
 

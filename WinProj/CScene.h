@@ -22,13 +22,15 @@ public:
 	{
 		m_arrObj[(UINT)_eType].push_back(_pObj);
 	}
+	void DeleteGroup(GROUP_TYPE _eTarget);
+	void DeleteAll();
 
 public:
 	virtual void Enter() = 0;
 	virtual void Exit() = 0;
-	void update();
-	void finalupdate();
-	void render(HDC _dc);
+	virtual void update();
+	virtual void finalupdate();
+	virtual void render(HDC _dc);
 
 public:
 	CScene(wstring _strName);

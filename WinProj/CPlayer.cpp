@@ -54,7 +54,7 @@ void CPlayer::update()
 		if (m_fSkillCoolDown < 0.f)
 		{
 			CreateMissile(MISSILE_MODE::SUPER);
-			m_fSkillCoolDown = 3.f;
+			m_fSkillCoolDown = 1.f;
 		}
 		if (m_fAttackCoolDown < 0.f)
 		{
@@ -96,6 +96,7 @@ void CPlayer::CreateMissile(MISSILE_MODE _mode)
 	vMissilePos.y -= GetScale().y / 2.f;
 
 	CMissile* pMissile = new CMissile;
+	pMissile->SetName(L"Missile_Player");
 	pMissile->SetPos(vMissilePos);
 	pMissile->SetScale(Vec2(25.f, 25.f));
 	pMissile->SetDir(Vec2(0.f,2.f));

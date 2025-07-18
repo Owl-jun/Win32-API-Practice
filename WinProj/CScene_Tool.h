@@ -1,15 +1,16 @@
 #pragma once
 #include "CScene.h"
-
-class CScene_Start : public CScene
+class CScene_Tool : public CScene
 {
 private:
+
 public:
-	void update() override;
 	void Enter() override;
 	void Exit() override;
+	void update() override;
+
 public:
-	CScene_Start(wstring _name);
-	~CScene_Start();
+	CScene_Tool(wstring _name);
+	~CScene_Tool();
 };
 

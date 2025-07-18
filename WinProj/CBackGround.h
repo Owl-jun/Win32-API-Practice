@@ -14,5 +14,6 @@ public:
 public:
 	CBackGround();
 	~CBackGround();
+	CLONE(CBackGround);
 };
 

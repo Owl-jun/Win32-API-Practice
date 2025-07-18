@@ -8,6 +8,17 @@
 #include "CTexture.h"
 #include "CBackGround.h"
 #include "CCollisionMgr.h"
+#include "CKeyMgr.h"
+#include "CSceneMgr.h"
+
+void CScene_Start::update()
+{
+	CScene::update();
+	if (KEY_TAP(KEY::ENTER))
+	{
+		ChangeScene(SCENE_TYPE::TOOL);
+	}
+}
 
 void CScene_Start::Enter()
 {
@@ -22,6 +33,10 @@ void CScene_Start::Enter()
 	pObj->SetScale(Vec2(100.f,100.f));
 	AddObject(pObj, GROUP_TYPE::PLAYER);
 
+	CObject* pOtherPlayer = pObj->Clone();
+	pOtherPlayer->SetPos(Vec2(700.f, 384.f));
+	AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
+
 	// Monster Object 추가
 	int iMonCount = 8;
 	float fMoveDist = 25.f;
@@ -31,6 +46,7 @@ void CScene_Start::Enter()
 	for (int i = 0; i < iMonCount; ++i)
 	{
 		auto mObj = new CMonster();
+		mObj->SetName(L"Monster");
 		mObj->SetPos(Vec2((fMoveDist + fObjScale / 2) + fTerm * i, 50.f * randint(1,3)));
 		mObj->SetCenterPos(mObj->GetPos());
 		mObj->SetMoveDistance(fMoveDist);
@@ -41,11 +57,12 @@ void CScene_Start::Enter()
 	// 충돌 지정
 	// Player 그룹과 Monster 그룹 관의 충돌 체크
 	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::PLAYER, GROUP_TYPE::MONSTER);
-
+	CCollisionMgr::GetInst()->CheckGroup(GROUP_TYPE::MONSTER, GROUP_TYPE::PROJ_PLAYER);
 }
 
 void CScene_Start::Exit()
 {
+	DeleteAll();
 	CCollisionMgr::GetInst()->Reset();
 }
 

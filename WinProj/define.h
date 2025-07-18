@@ -9,6 +9,9 @@
 					 private:\
 						type();\
 						~type();
+
+#define CLONE(type) type* Clone() override {return new type(*this);}
+
 #define GETTEX(key, path) CResMgr::GetInst()->LoadTexture(key, path)
 #define PATH CPathMgr::GetInst()->GetContentPath()
 

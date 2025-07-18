@@ -7,6 +7,7 @@ private:
 	float					m_fSpeed;
 	float					m_fMaxDistance;
 	int						m_iDir;	// 1 : right , -1 : left
+	int						m_iHP;
 private:
 	shared_ptr<CTexture>	m_pTex;
 public:
@@ -20,6 +21,7 @@ public:
 public:
 	void update() override;
 	void render(HDC _dc) override;
+	CLONE(CMonster);
 
 public:
 	CMonster();
