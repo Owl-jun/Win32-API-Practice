@@ -8,7 +8,7 @@
 #include "CResMgr.h"
 #include "CCollider.h"
 #include "CAnimator.h"
-
+#include "CAnimation.h"
 
 CPlayer::CPlayer()
 	: m_fAttackCoolDown(0.1f)
@@ -19,13 +19,19 @@ CPlayer::CPlayer()
 	//m_pTex = GETTEX(L"PlayerTex", L"texture\\Player.bmp");
 
 	CreateCollider();
-	GetCollider()->SetOffsetPos(Vec2{ 0.f, 5.f });
-	GetCollider()->SetScale(Vec2{ 20.f, 60.f });
+	GetCollider()->SetOffsetPos(Vec2{ 0.f, 0.f });
+	GetCollider()->SetScale(Vec2{ 40.f, 40.f });
 	
 	shared_ptr<CTexture> pTex = GETTEX(L"PlayerTex", L"texture\\Charactor.bmp");
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0.f,1024.f), Vec2(128.f, 128.f),Vec2(128.f,0.f), 0.1f, 10);
 	GetAnimator()->Play(L"WALK_LEFT", true);
+
+	CAnimation* pAnim = GetAnimator()->FindAnimation(L"WALK_LEFT");
+	for (int i = 0; i < pAnim->GetMaxFrame(); ++i)
+	{
+		pAnim->GetFrame(i).vOffset = Vec2(0.f, -60.f);
+	}
 }
 
 CPlayer::~CPlayer()

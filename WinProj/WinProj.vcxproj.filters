@@ -89,6 +89,9 @@
     <Filter Include="Engine\07. Component\Animation">
       <UniqueIdentifier>{d30ae58c-bee4-417d-8b9f-916a0658e961}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Engine\03. Manager\Camera">
+      <UniqueIdentifier>{7e0095ff-4586-40f4-97c8-01dff5360834}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CCore.h">
@@ -179,7 +182,12 @@
     <ClInclude Include="CAnimator.h">
       <Filter>Engine\07. Component\Animator</Filter>
     </ClInclude>
-    <ClInclude Include="CAnimation.h" />
+    <ClInclude Include="CAnimation.h">
+      <Filter>Engine\07. Component\Animation</Filter>
+    </ClInclude>
+    <ClInclude Include="CCamera.h">
+      <Filter>Engine\03. Manager\Camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="WinProj.rc">
@@ -268,6 +276,11 @@
     <ClCompile Include="CAnimator.cpp">
       <Filter>Engine\07. Component\Animator</Filter>
     </ClCompile>
-    <ClCompile Include="CAnimation.cpp" />
+    <ClCompile Include="CAnimation.cpp">
+      <Filter>Engine\07. Component\Animation</Filter>
+    </ClCompile>
+    <ClCompile Include="CCamera.cpp">
+      <Filter>Engine\03. Manager\Camera</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

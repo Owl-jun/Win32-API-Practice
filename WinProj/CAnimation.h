@@ -7,6 +7,7 @@ struct tAnimFrm
 {
 	Vec2	vLT;
 	Vec2	vSlice;
+	Vec2	vOffset;
 	float	fDuration;
 };
 
@@ -33,10 +34,14 @@ public:
 		m_fAccTime = 0.f;
 	}
 
+	tAnimFrm& GetFrame(int _iIdx) { return m_vecFrm[_iIdx]; }
+	int GetMaxFrame() { return m_vecFrm.size(); }
+
 public:
 	void update();
 	void render(HDC _dc);
 	void Create(shared_ptr<CTexture> _pTex, Vec2 _vLT, Vec2 _SliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount);
+
 
 public:
 	CAnimation();

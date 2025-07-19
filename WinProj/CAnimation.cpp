@@ -25,15 +25,16 @@ void CAnimation::update()
 	if (m_vecFrm[m_iCurFrm].fDuration <= m_fAccTime)
 	{
 		m_iCurFrm = (m_iCurFrm+1) % m_vecFrm.size();
-		float fDuTime = 0.f;
+
 		if ((m_vecFrm.size()-1) <= m_iCurFrm)
 		{
-			fDuTime = m_vecFrm[m_iCurFrm].fDuration;
 			m_iCurFrm = -1;
 			m_bFinish = true;
+			m_fAccTime = 0.f;
+			return;
 		}
 
-		m_fAccTime = m_fAccTime - fDuTime;
+		m_fAccTime = m_fAccTime - m_vecFrm[m_iCurFrm].fDuration;
 	}
 }
 
@@ -43,7 +44,8 @@ void CAnimation::render(HDC _dc)
 
 	CObject* pObj = m_pAnimator->GetObj();
 	Vec2 vPos = pObj->GetPos();
-	m_vecFrm[m_iCurFrm].vSlice;
+
+	vPos += m_vecFrm[m_iCurFrm].vOffset;
 
 	TransparentBlt(_dc,
 		(int)vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f,

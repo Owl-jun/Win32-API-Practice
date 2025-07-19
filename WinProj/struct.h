@@ -27,14 +27,20 @@ public:
 
 public:
 	Vec2 operator + (Vec2 _vOther) { return Vec2(x + _vOther.x, y + _vOther.y); }
+	void operator += (Vec2 _vOther) { x += _vOther.x; y += _vOther.y; }
 	Vec2 operator - (Vec2 _vOther) { return Vec2(x - _vOther.x, y - _vOther.y); }
 	Vec2 operator * (Vec2 _vOther) { return Vec2(x * _vOther.x, y * _vOther.y); }
 	Vec2 operator / (Vec2 _vOther) { 
-		assert(_vOther.x == 0.f || _vOther.y == 0.f);
+		assert(!(_vOther.x == 0.f || _vOther.y == 0.f));
+
 		return Vec2(x + _vOther.x, y + _vOther.y); 
 	}
-
+	
 	Vec2 operator * (int _iNum) { return Vec2(x * (float)_iNum, y * (float)_iNum); }
+	Vec2 operator / (float _fNum) { 
+		assert(!(_fNum == 0.f));
+		return Vec2(x / _fNum, y / _fNum);
+	}
 
 	Vec2& operator = (POINT _pt)
 	{
