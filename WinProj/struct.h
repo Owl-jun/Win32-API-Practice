@@ -34,6 +34,8 @@ public:
 		return Vec2(x + _vOther.x, y + _vOther.y); 
 	}
 
+	Vec2 operator * (int _iNum) { return Vec2(x * (float)_iNum, y * (float)_iNum); }
+
 	Vec2& operator = (POINT _pt)
 	{
 		x = (float)_pt.x;

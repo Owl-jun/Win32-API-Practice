@@ -7,20 +7,25 @@
 #include "CPathMgr.h"
 #include "CResMgr.h"
 #include "CCollider.h"
+#include "CAnimator.h"
 
 
 CPlayer::CPlayer()
 	: m_fAttackCoolDown(0.1f)
 	, m_fSkillCoolDown(3.f)
 	, m_fSpeed(400.f)
-	, m_pTex(nullptr)
 {
 	// Texture 로딩
-	m_pTex = GETTEX(L"PlayerTex", L"texture\\Player.bmp");
+	//m_pTex = GETTEX(L"PlayerTex", L"texture\\Player.bmp");
 
 	CreateCollider();
 	GetCollider()->SetOffsetPos(Vec2{ 0.f, 5.f });
 	GetCollider()->SetScale(Vec2{ 20.f, 60.f });
+	
+	shared_ptr<CTexture> pTex = GETTEX(L"PlayerTex", L"texture\\Charactor.bmp");
+	CreateAnimator();
+	GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0.f,1024.f), Vec2(128.f, 128.f),Vec2(128.f,0.f), 0.1f, 10);
+	GetAnimator()->Play(L"WALK_LEFT", true);
 }
 
 CPlayer::~CPlayer()
@@ -64,28 +69,11 @@ void CPlayer::update()
 	}
 
 	SetPos(m_vPos);
-
+	GetAnimator()->update();
 }
 
 void CPlayer::render(HDC _dc)
 {
-	int iWidth = (int)m_pTex->Width();
-	int iHeight = (int)m_pTex->Height();
-	Vec2 vPos = GetPos();
-	
-	/*BitBlt(_dc, (int)(vPos.x - (float)(iWidth / 2))
-			  , (int)(vPos.y - (float)(iHeight / 2))
-			  ,	iWidth , iHeight, m_pTex->GetDC(), 0, 0, SRCCOPY);*/
-	
-	TransparentBlt(_dc
-		, (int)(vPos.x - (float)(iWidth / 2))
-		, (int)(vPos.y - (float)(iHeight / 2))
-		, iWidth, iHeight
-		, m_pTex->GetDC()
-		, 0, 0, iWidth, iHeight
-		, RGB(255, 0, 255)
-	);
-
 	// 컴포넌트 충돌체 Render
 	component_render(_dc);
 }

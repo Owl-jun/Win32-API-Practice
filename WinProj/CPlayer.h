@@ -11,7 +11,7 @@ private:
 	float					m_fSkillCoolDown;
 	float					m_fSpeed;
 private:
-	shared_ptr<CTexture>	m_pTex;
+	//shared_ptr<CTexture>	m_pTex;
 
 public:
 	CPlayer();
