@@ -22,7 +22,7 @@ void CSceneMgr::init()
 	m_arrScene[(UINT)SCENE_TYPE::TOOL] = std::make_shared<CScene_Tool>(L"Tool Scene");
 	//m_arrScene[(UINT)SCENE_TYPE::STAGE_01] = std::make_shared<CScene_Stage01>();
 	//m_arrScene[(UINT)SCENE_TYPE::STAGE_02] = std::make_shared<CScene_Stage02>();
-	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::START];
+	m_pCurScene = m_arrScene[(UINT)SCENE_TYPE::TOOL];
 	m_pCurScene->Enter();
 }
 

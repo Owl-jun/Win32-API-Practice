@@ -17,16 +17,14 @@ CResMgr::~CResMgr()
 
 CTexture* CResMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
+	wstring strFilePath = PATH;
+	strFilePath += _strRelativePath;
 
 	CTexture* pTex = FindTexture(_strKey);
 	if (nullptr != pTex)
 		return pTex;
 	
-	wstring strFilePath = PATH;
-	strFilePath += _strRelativePath;
-
-	CTexture* rawPtr = new CTexture();
-
+	pTex = new CTexture();
 	pTex->Load(strFilePath);
 	pTex->SetKey(_strKey);
 	pTex->SetRelativePath(_strRelativePath);

@@ -26,10 +26,12 @@
 #define KEY_NONE(key)	GETKEY(key) == KEY_STATE::NONE
 
 #define PI 3.141592f
+#define TILE_SIZE 128
 
 enum class GROUP_TYPE
 {
 	DEFAULT,
+	TILE,
 	PLAYER,
 	MONSTER,
 	PROJ_PLAYER,
