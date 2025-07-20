@@ -4,6 +4,8 @@
 #include "CTexture.h"
 #include "CObject.h"
 #include "CTimeMgr.h"
+#include "CCamera.h"
+
 
 CAnimation::CAnimation()
 	: m_iCurFrm(0)
@@ -47,6 +49,9 @@ void CAnimation::render(HDC _dc)
 
 	vPos += m_vecFrm[m_iCurFrm].vOffset;
 
+	// ·»´õ¸µ ÁÂÇ¥·Î º¯È¯.
+	vPos = CCamera::GetInst()->GetRenderPos(vPos);
+
 	TransparentBlt(_dc,
 		(int)vPos.x - m_vecFrm[m_iCurFrm].vSlice.x / 2.f,
 		(int)vPos.y - m_vecFrm[m_iCurFrm].vSlice.y / 2.f,
@@ -61,11 +66,11 @@ void CAnimation::render(HDC _dc)
 	);
 }
 
-void CAnimation::Create(shared_ptr<CTexture> _pTex, Vec2 _vLT, Vec2 _SliceSize,  Vec2 _vStep, float _fDuration, UINT _iFrameCount)
+void CAnimation::Create(CTexture* _pTex, Vec2 _vLT, Vec2 _SliceSize,  Vec2 _vStep, float _fDuration, UINT _iFrameCount)
 {
 	m_pTex = _pTex;
 	tAnimFrm frm = {};
-	for (UINT i = 0; i < _iFrameCount; ++i)
+	for (int i = 0; i < _iFrameCount; ++i)
 	{
 		frm.fDuration = _fDuration;
 		frm.vSlice = _SliceSize;

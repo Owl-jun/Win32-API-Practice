@@ -19,13 +19,20 @@ void CScene_Start::update()
 	{
 		ChangeScene(SCENE_TYPE::TOOL);
 	}
+
+	if (KEY_TAP(KEY::LBTN))
+	{
+		Vec2 vLookAt = CCamera::GetInst()->GetRealPos(MOUSE_POS);
+		CCamera::GetInst()->SetLookAt(vLookAt);
+		
+	}
 }
 
 void CScene_Start::Enter()
 {
-	auto bg = new CBackGround();
-	bg->SetPos(Vec2(640.f, 384.f));
-	AddObject(bg, GROUP_TYPE::DEFAULT);
+	//auto bg = new CBackGround();
+	//bg->SetPos(Vec2(640.f, 384.f));
+	//AddObject(bg, GROUP_TYPE::DEFAULT);
 
 	// Object 추가
 	auto pObj = new CPlayer();
@@ -37,6 +44,8 @@ void CScene_Start::Enter()
 	//CObject* pOtherPlayer = pObj->Clone();
 	//pOtherPlayer->SetPos(Vec2(700.f, 384.f));
 	//AddObject(pOtherPlayer, GROUP_TYPE::PLAYER);
+
+	//CCamera::GetInst()->SetTarget(pObj);
 
 	// Monster Object 추가
 	int iMonCount = 8;

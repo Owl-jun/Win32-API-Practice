@@ -8,6 +8,7 @@
 #include "CResMgr.h"
 #include "CCollisionMgr.h"
 #include "CEventMgr.h"
+#include "CCamera.h"
 
 CCore::CCore()
 	: m_hWnd(0)
@@ -68,6 +69,7 @@ void CCore::progress()
 	// ====================
 	CTimeMgr::GetInst()->update();
 	CKeyMgr::GetInst()->update();
+	CCamera::GetInst()->update();
 
 	// ====================
 	// Scene Update

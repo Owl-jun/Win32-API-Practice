@@ -13,7 +13,7 @@ private:
 	bool								m_bRepeat;
 
 public:
-	void CreateAnimation(const wstring& _strName, shared_ptr<CTexture> _pTex, 
+	void CreateAnimation(const wstring& _strName, CTexture* _pTex, 
 		Vec2 _vLT, Vec2 _SliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount);
 	CAnimation* FindAnimation(const wstring& _strName);
 	void Play(const wstring& _strName, bool _repeat);

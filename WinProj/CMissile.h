@@ -22,8 +22,8 @@ private:
 	float			m_fSpeed;
 
 private:
-	shared_ptr<CTexture>	m_pNormalTex;
-	shared_ptr<CTexture>	m_pSuperTex;
+	CTexture*	m_pNormalTex;
+	CTexture*	m_pSuperTex;
 
 public:
 	void SetDir(Vec2 _vDir)	{ 

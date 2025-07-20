@@ -5,7 +5,7 @@
 class CBackGround : public CObject
 {
 private:
-	shared_ptr<CTexture>	m_pTex;
+	CTexture*	m_pTex;
 
 public:
 	void update() override;

@@ -9,7 +9,7 @@ private:
 	int						m_iDir;	// 1 : right , -1 : left
 	int						m_iHP;
 private:
-	shared_ptr<CTexture>	m_pTex;
+	CTexture*	m_pTex;
 public:
 	float GetSpeed() { return m_fSpeed; }
 	void SetSpeed(float _spd) { m_fSpeed = _spd; }

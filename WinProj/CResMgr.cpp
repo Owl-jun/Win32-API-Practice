@@ -9,13 +9,16 @@ CResMgr::CResMgr()
 
 CResMgr::~CResMgr()
 {
-	m_mapTex.clear();
+	for (auto m : m_mapTex)
+	{
+		delete m.second;
+	}
 }
 
-shared_ptr<CTexture> CResMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
+CTexture* CResMgr::LoadTexture(const wstring& _strKey, const wstring& _strRelativePath)
 {
 
-	shared_ptr<CTexture> pTex = FindTexture(_strKey);
+	CTexture* pTex = FindTexture(_strKey);
 	if (nullptr != pTex)
 		return pTex;
 	
@@ -23,7 +26,6 @@ shared_ptr<CTexture> CResMgr::LoadTexture(const wstring& _strKey, const wstring&
 	strFilePath += _strRelativePath;
 
 	CTexture* rawPtr = new CTexture();
-	pTex = shared_ptr<CTexture>(rawPtr, TextureDeleter());
 
 	pTex->Load(strFilePath);
 	pTex->SetKey(_strKey);
@@ -34,7 +36,7 @@ shared_ptr<CTexture> CResMgr::LoadTexture(const wstring& _strKey, const wstring&
 	return pTex;
 }
 
-shared_ptr<CTexture> CResMgr::FindTexture(const wstring& _strKey)
+CTexture* CResMgr::FindTexture(const wstring& _strKey)
 {
 	auto it = m_mapTex.find(_strKey);
 	if (it != m_mapTex.end()) { return it->second; }

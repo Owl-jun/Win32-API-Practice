@@ -22,7 +22,7 @@ CPlayer::CPlayer()
 	GetCollider()->SetOffsetPos(Vec2{ 0.f, 0.f });
 	GetCollider()->SetScale(Vec2{ 40.f, 40.f });
 	
-	shared_ptr<CTexture> pTex = GETTEX(L"PlayerTex", L"texture\\Charactor.bmp");
+	CTexture* pTex = GETTEX(L"PlayerTex", L"texture\\Charactor.bmp");
 	CreateAnimator();
 	GetAnimator()->CreateAnimation(L"WALK_LEFT", pTex, Vec2(0.f,1024.f), Vec2(128.f, 128.f),Vec2(128.f,0.f), 0.1f, 10);
 	GetAnimator()->Play(L"WALK_LEFT", true);

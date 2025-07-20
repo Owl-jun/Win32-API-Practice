@@ -16,7 +16,7 @@ class CAnimation
 private:
 	wstring					m_strName;
 	CAnimator*				m_pAnimator;
-	shared_ptr<CTexture>	m_pTex;			// Animation이 사용하는 텍스쳐
+	CTexture*				m_pTex;			// Animation이 사용하는 텍스쳐
 	vector<tAnimFrm>		m_vecFrm;		// 모든 프레임 정보
 	int						m_iCurFrm;
 	float					m_fAccTime;
@@ -40,7 +40,7 @@ public:
 public:
 	void update();
 	void render(HDC _dc);
-	void Create(shared_ptr<CTexture> _pTex, Vec2 _vLT, Vec2 _SliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount);
+	void Create(CTexture* _pTex, Vec2 _vLT, Vec2 _SliceSize, Vec2 _vStep, float _fDuration, UINT _iFrameCount);
 
 
 public:

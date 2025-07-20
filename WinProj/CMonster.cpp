@@ -3,6 +3,7 @@
 #include "CTimeMgr.h"
 #include "CResMgr.h"
 #include "CCollider.h"
+#include "CCamera.h"
 
 CMonster::CMonster()
 	: m_vCenterPos(Vec2(0.f,0.f))
@@ -61,6 +62,8 @@ void CMonster::render(HDC _dc)
 	int iWidth = (int)m_pTex->Width();
 	int iHeight = (int)m_pTex->Height();
 	Vec2 vPos = GetPos();
+
+	vPos = CCamera::GetInst()->GetRenderPos(vPos);
 
 	// 255 , 0 , 255 (마젠타) 색 크로마키 화 해서 Blt
 	TransparentBlt(_dc
